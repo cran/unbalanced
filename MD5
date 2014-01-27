@@ -1,5 +1,5 @@
-66aa25c7ff66d05e7e8a7640158b2e7d *DESCRIPTION
-cf7ad27ee77f27f5b24b69cc67d27d81 *NAMESPACE
+8c1e131e6b00300ab2059e3ef03058ad *DESCRIPTION
+2bd599fee8e71194924375a29dd2ef9b *NAMESPACE
 a3023cf299a7b4550aa053ed7c9d4ce5 *R/ubBalance.R
 94c16cafe9ebb8374eeaa7c8ebd51a84 *R/ubCNN.R
 b87d9d97f4351010a1f90db4b901a6ac *R/ubENN.R
@@ -22,4 +22,4 @@ e97ccbda67b4c8acda394a62c5b6ebe9 *man/ubNCL.Rd
 f70d15767dffdbd9193f479c8c43f51c *man/ubSmoteExs.Rd
 d0c18490b867bfd50b5db5cc91a5af81 *man/ubTomek.Rd
 cafcd59ce866a885c95f054758f279cc *man/ubUnder.Rd
-c85ce49fe842339fad14d8b31a433595 *man/unbalanced-package.Rd
+8ce78ff7f22f5c2286cae917cd5752e4 *man/unbalanced-package.Rd
