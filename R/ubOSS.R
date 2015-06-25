@@ -1,9 +1,10 @@
 ubOSS <-
-function(X,Y,verbose=T){
+function(X, Y, verbose=TRUE){
+  
+  stopifnot(class(verbose) == "logical", all(unique(Y) %in% c(0, 1)))
   
   #only numeric features are allowed
-  is.not.num<-which(sapply(X,is.numeric)==FALSE)
-  if(length(is.not.num)>0)
+  if(any(sapply(X,is.numeric)==FALSE))
     stop("only numeric features are allowed to compute nearest neighbors")
   
   S.X<-X
@@ -19,19 +20,21 @@ function(X,Y,verbose=T){
   
   #initially C contains all 1s from S and one random 0 obs
   id.C<-c(i.1,sample(i.0,1))	
-  C.X<-X[id.C,]
+  C.X<-X[id.C, ]
   C.Y<-Y[id.C]
   #use C to to build a 1-NN and classify all obs in S
-  Y.knn<-knn(C.X,S.X,C.Y,k = 1)
+  Y.knn<-knn(C.X, S.X, C.Y, k = 1)
   #move missclassified obs into C
   id.miss<-which(S.Y!=Y.knn)
   id.C<-c(id.C,id.miss)
-  id.C<-sample(id.C)
-  C.X<-X[id.C,]
+  id.C <- sort(id.C)
+  #id.C<-sample(id.C)
+  C.X<-X[id.C, ]
   C.Y<-Y[id.C]
   #now C is consistent with S
+  
   #remove from C 0s that are tomek links
-  data<-ubTomek(X,Y,verbose)
+  data<-ubTomek(C.X, C.Y, verbose)
   X<-data$X
   Y<-data$Y
   

@@ -1,18 +1,25 @@
 \name{ubBalance}
 \alias{ubBalance}
 
-\title{balance}
+\title{Balance wrapper}
 
-\description{The function implementes several techniques to re-balance or remove noisy instances in unbalanced datasets.}
+\description{The function implements several techniques to re-balance or remove noisy instances in unbalanced datasets.}
 
-\usage{ubBalance(X, Y, type = "ubSMOTE", ...)}
+\usage{ubBalance(X, Y, type="ubSMOTE", positive=1, percOver=200, percUnder=200, 
+          k=5, perc=50, method="percPos", w=NULL, verbose=FALSE)}
 
 \arguments{
   \item{X}{the input variables of the unbalanced dataset.}
-  \item{Y}{the response variable of the unbalanced dataset. 
-          It must be a binary factor where the majority class is coded as 0 and the minority as 1.}
-  \item{type}{the balancing technique to use ("ubOver", "ubUnder", "ubSMOTE", "ubOSS","ubCNN", "ubENN", "ubNCL", "ubTomek").}
-  \item{\dots}{further arguments passed to the selected technique}
+  \item{Y}{the response variable of the unbalanced dataset.}
+  \item{type}{the balancing technique to use (ubOver, ubUnder, ubSMOTE, ubOSS, ubCNN, ubENN, ubNCL, ubTomek).}
+  \item{positive}{the majority class of the response variable.}
+  \item{percOver}{parameter used in ubSMOTE}
+  \item{percUnder}{parameter used in ubSMOTE}
+  \item{k}{parameter used in ubOver, ubSMOTE, ubCNN, ubENN, ubNCL}
+  \item{perc}{parameter used in ubUnder}
+  \item{method}{parameter used in ubUnder}
+  \item{w}{parameter used in ubUnder}
+  \item{verbose}{print extra information (TRUE/FALSE)}
 }
 
 
@@ -21,15 +28,14 @@
 \value{
   The function returns a list:
   \item{X}{input variables}
-  \item{Y}{response variables}
+  \item{Y}{response variable}
   \item{id.rm}{index of instances removed if availble in the technique selected}
 }
-\references{
-Dal Pozzolo, Andrea, et al. "Racing for unbalanced methods selection." Intelligent Data Engineering and Automated Learning - IDEAL 2013. Springer Berlin Heidelberg, 2013. 24-31.}
+\references{Dal Pozzolo, Andrea, et al. "Racing for unbalanced methods selection." Intelligent Data Engineering and Automated Learning - IDEAL 2013. Springer Berlin Heidelberg, 2013. 24-31.}
 
 
 \seealso{
-\code{\link{ubOver}}, \code{\link{ubUnder}}, \code{\link{ubSMOTE}}, \code{\link{ubOSS}}, \code{\link{ubCNN}}, \code{\link{ubENN}}, \code{\link{ubNCL}}, \code{\link{ubTomek}}
+\code{\link{ubRacing}}, \code{\link{ubOver}}, \code{\link{ubUnder}}, \code{\link{ubSMOTE}}, \code{\link{ubOSS}}, \code{\link{ubCNN}}, \code{\link{ubENN}}, \code{\link{ubNCL}}, \code{\link{ubTomek}}
 }
 
 \examples{
@@ -40,6 +46,6 @@ output<-ubIonosphere$Class
 input<-ubIonosphere[ ,-n]
 
 #balance the dataset
-data<-ubBalance(X= input, Y=output, type="ubSMOTE", perc.over=300, perc.under=150, verbose=TRUE)
+data<-ubBalance(X= input, Y=output, type="ubSMOTE", percOver=300, percUnder=150, verbose=TRUE)
 balancedData<-cbind(data$X,data$Y)
 }

@@ -1,9 +1,10 @@
 ubTomek <-
-function(X,Y,verbose=TRUE){
+function(X, Y, verbose=TRUE){
+  
+  stopifnot(class(verbose) == "logical", all(unique(Y) %in% c(0, 1)))
   
   #only numeric features are allowed
-  is.not.num<-which(sapply(X,is.numeric)==FALSE)
-  if(length(is.not.num)>0)
+  if(any(sapply(X,is.numeric)==FALSE))
     stop("only numeric features are allowed to compute nearest neighbors")
   
   N<-nrow(X)
@@ -31,7 +32,7 @@ function(X,Y,verbose=TRUE){
     
     if(any(Y[id2remove]==1))  stop("Error: class 1 removed")
     
-    id2keep<-setdiff(1:N,id2remove) 
+    id2keep<-setdiff(1:N, id2remove) 
     Xred<-X[id2keep,]
     Yred<-Y[id2keep]
     

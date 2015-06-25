@@ -27,7 +27,7 @@ function(X,Y,k=1,verbose=T){
   id.miss<-which(S.Y!=Y.knn)
   id.C<-c(id.C,id.miss)
   # id.C<-sample(id.C)
-  X<-X[id.C,]
+  X<-X[id.C, ]
   Y<-Y[id.C]
   #now C is consistent with S
   
